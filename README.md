@@ -3,12 +3,12 @@
 A DeepSeek Harness plugin: **domains, blocks and links on one desk.** Take notes, annotate code, divide a project into domains, sketch a blueprint and ground it later — the human in a canvas panel and the agent through the `structure_desk` tool edit **the same board on disk**.
 
 > 本仓库是**插件包本体**（宿主半边＋浏览器半边＋智能体工具）。结构台项目的工作区文档、示例项目、自扫描板、验收工具与截图不随本仓库发布。
-> 版本：`package.json` 0.1.0（对应结构台项目 v1.17 实现）；宿主侧单测 57/57、宿主 HTTP 验收 42/42 已验；浏览器 stage v27 待外部环境跑。
+> 版本：`package.json` 0.1.0（对应结构台项目 v1.17 实现）；宿主侧单测 58/58、宿主 HTTP 验收 42/42 已验；浏览器 stage v27 待外部环境跑。
 
 ## 状态（Alpha）
 
 - **版本**：0.1.0（对应结构台项目 v1.17 实现）；插件内部接口可能随版本调整，暂不承诺跨版本兼容。变更见 [CHANGELOG.md](CHANGELOG.md)。
-- **已验（宿主侧 / Node）**：`node --test` 57/57；宿主 HTTP 验收 42/42（300/800 块合成板：`/rev`、move-only 回包、`/state?parts`、`/history?since|batch`、读缓存、gzip wire 字节）；v1.16 回归 18/18；300 块 Node 热路径近似：物理 p50 3.3ms、DOM 写 1163 次/帧。
+- **已验（宿主侧 / Node）**：`node --test` 58/58；宿主 HTTP 验收 42/42（300/800 块合成板：`/rev`、move-only 回包、`/state?parts`、`/history?since|batch`、读缓存、gzip wire 字节）；v1.16 回归 18/18；300 块 Node 热路径近似：物理 p50 3.3ms、DOM 写 1163 次/帧。
 - **未验（浏览器）**：浏览器验收 stage v26/v27 **尚未在真实浏览器跑**（开发沙箱无法启动 headless Edge）；真实帧耗时、画布交互、明暗主题与跨浏览器兼容未验证。**在浏览器验收完成前按 Alpha 对待。**
 - **已知边界**：JSON 响应 gzip 后达标，但 raw 载荷仍大（`/state` 约 224KB）；800 块历史受 16MB 上限只保留约 17 批（磁盘优化候选）；板子格式 `structure-desk/1` 向前读取兼容。
 
@@ -77,13 +77,17 @@ window.__sdPollDbg()     // 轮询计数：revPolls / stateFetches / lastRev（v
 | `lib/brief.js` | 两页 Markdown（简报／域录；域录带完成判据），纯函数 |
 | `lib/tools.js` | 智能体工具 `structure_desk` |
 | `lib/client.js` | 浏览器半边：一整页画布 UI |
-| `tests/` | scan／brief／history／criteria／layer／api-incremental 单测（node --test，57 项） |
+| `tests/` | scan／brief／history／criteria／layer／api-incremental 单测（node --test，58 项） |
 
 ## 测试
 
 ```powershell
-node --test --test-isolation=none                          # 全部单测（57 项，Node >= 22）
-node --test --test-isolation=none tests/history.test.mjs   # 单个文件（不 spawn 子进程）
+npm test                                    # 全部单测（58 项，Node >= 22）
+node --test tests/history.test.mjs          # 单个文件
 ```
+
+> 默认隔离会给每个测试文件起一个子进程；DSH 沙箱内 Node 禁止子进程管道，需单进程跑：
+> `node --test --experimental-test-isolation=none`（Node 22.8+ 与 Node 24 均认此旧名；
+> `--test-isolation` 是 Node 24 的新名字，Node 22 不认）。
 
 宿主 HTTP 验收脚本（`host-check-v116/v117`）与浏览器验收（stage v26/v27）在结构台项目工作区的 `18-结构台/tools/` 下，不随本仓库发布。

@@ -11,6 +11,7 @@ import {
   applyLayout,
   boardFiles,
   mutate,
+  newBatchId,
   readHistory,
   readState,
   replaceBoard,
@@ -134,6 +135,13 @@ test('历史只留最近 50 批，旧快照文件一起清掉', async () => {
   } finally {
     rmSync(project, { recursive: true, force: true })
   }
+})
+
+test('同一秒内连续取 batch id 不撞（v0.1.0 修复快照互相覆盖）', () => {
+  const at = new Date('2026-11-09T22:30:00+08:00')
+  const ids = new Set()
+  for (let index = 0; index < 5000; index += 1) ids.add(newBatchId(at))
+  assert.equal(ids.size, 5000)
 })
 
 test('整板替换（本地撤销/重做）也记一批，diff 对得上', async () => {

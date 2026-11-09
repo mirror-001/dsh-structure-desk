@@ -16,4 +16,6 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
       - name: unit tests
-        run: node --test --test-isolation=none
+        # 默认隔离（每个测试文件一个子进程，原始行为）；--test-isolation 这个
+        # 名字只有 Node 24 认，Node 22 会报 bad option，故 CI 不用它。
+        run: npm test

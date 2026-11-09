@@ -1,0 +1,4 @@
+# 结构台：宿主半边（HTTP 口子、账本读写、智能体工具）。浏览器半边由 package.json 的 dsh.client 声明加载。
+- insert:
+    - id: structure-desk
+      name: 'dsh-structure-desk'

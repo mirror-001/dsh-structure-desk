@@ -1,0 +1,47 @@
+{
+  "name": "dsh-structure-desk",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "结构台 · DeepSeek Harness 插件：域／块／连接一张桌，笔记、标注、分域、蓝图；人和智能体改同一份盘上的结构蓝图。",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mirror-001/dsh-structure-desk.git"
+  },
+  "homepage": "https://github.com/mirror-001/dsh-structure-desk#readme",
+  "bugs": {
+    "url": "https://github.com/mirror-001/dsh-structure-desk/issues"
+  },
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "icon": "./icon.svg",
+  "files": [
+    "lib",
+    "locale/*.json",
+    "cordis.patch.yml",
+    "icon.svg",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test --test-isolation=none"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "keywords": ["dsh-plugin", "deepseek-harness", "structure", "blueprint", "canvas", "ledger"],
+  "dsh": {
+    "bundle": { "patch": "./cordis.patch.yml" },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  }
+}

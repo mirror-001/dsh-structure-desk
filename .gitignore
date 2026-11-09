@@ -1,0 +1,8 @@
+# 依赖与构建产物
+node_modules/
+# 测量/验收临时件（不属于插件包）
+.dsh-tmp/
+# 日志与系统垃圾
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="结构台">
+  <rect x="0" y="0" width="64" height="64" rx="14" fill="#15263c"/>
+  <!-- 域：虚线包络 + 椭圆 -->
+  <rect x="8.5" y="9.5" width="31" height="27" rx="9" fill="none" stroke="#5f8fd6" stroke-width="1.6" stroke-dasharray="3 3" opacity="0.85"/>
+  <ellipse cx="24" cy="23" rx="10.5" ry="7.5" fill="#cfe0f7"/>
+  <!-- 块：圆角矩形 -->
+  <rect x="33" y="37" width="22" height="16" rx="4" fill="none" stroke="#f0b429" stroke-width="2.4"/>
+  <rect x="37.5" y="42" width="13" height="2.2" rx="1.1" fill="#f0b429"/>
+  <rect x="37.5" y="46.4" width="9" height="2.2" rx="1.1" fill="#f0b429" opacity="0.7"/>
+  <!-- 连接：覆盖 -->
+  <path d="M31 30.5 C 26 40, 30 45, 36.5 45" fill="none" stroke="#eef4ff" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
+  <circle cx="36.5" cy="45" r="2.3" fill="#eef4ff"/>
+  <!-- 蓝图点 -->
+  <circle cx="48" cy="19" r="3.4" fill="none" stroke="#7ee0c0" stroke-width="1.8" stroke-dasharray="2 2.4"/>
+</svg>

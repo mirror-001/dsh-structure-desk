@@ -3,13 +3,14 @@
 A DeepSeek Harness plugin: **domains, blocks and links on one desk.** Take notes, annotate code, divide a project into domains, sketch a blueprint and ground it later — the human in a canvas panel and the agent through the `structure_desk` tool edit **the same board on disk**.
 
 > 本仓库是**插件包本体**（宿主半边＋浏览器半边＋智能体工具）。结构台项目的工作区文档、示例项目、自扫描板、验收工具与截图不随本仓库发布。
-> 版本：`package.json` 0.1.0（对应结构台项目 v1.17 实现）；宿主侧单测 58/58、宿主 HTTP 验收 42/42 已验；浏览器 stage v27 待外部环境跑。
+> 版本：`package.json` 0.1.0（对应结构台项目 v1.17 实现）；宿主侧单测 58/58、宿主 HTTP 验收 42/42 已验；浏览器 stage v26/v27 与回归链已跑通（Edge 157 headless，2026-11-10）。
 
 ## 状态（Alpha）
 
 - **版本**：0.1.0（对应结构台项目 v1.17 实现）；插件内部接口可能随版本调整，暂不承诺跨版本兼容。变更见 [CHANGELOG.md](CHANGELOG.md)。
 - **已验（宿主侧 / Node）**：`node --test` 58/58；宿主 HTTP 验收 42/42（300/800 块合成板：`/rev`、move-only 回包、`/state?parts`、`/history?since|batch`、读缓存、gzip wire 字节）；v1.16 回归 18/18；300 块 Node 热路径近似：物理 p50 3.3ms、DOM 写 1163 次/帧。
-- **未验（浏览器）**：浏览器验收 stage v26/v27 **尚未在真实浏览器跑**（开发沙箱无法启动 headless Edge）；真实帧耗时、画布交互、明暗主题与跨浏览器兼容未验证。**在浏览器验收完成前按 Alpha 对待。**
+- **已验（浏览器）**：stage **v26**（v1.16 计划与图层）**23/0**、**v27**（v1.17 载荷与接口）**15/0**，回归链 v27→v26→v25→v24→v23→v22→v21→auto→v11 合计 **174 PASS / 0 FAIL**（2026-11-10，Edge 157.0.4341.42 headless + CDP attach）。真机 300 块 F 组：物理 p50 3.3ms、DOM 写 1173 次/帧是瓶颈（暂停物理即 58fps）——v1.18 先做渲染优化。
+- **未覆盖**：真实用户浏览器的帧率与跨浏览器兼容未测（本机 headless 软件合成下画布热档仅 3.5fps，绝对帧率不代表普通浏览器）；明暗主题与快捷键已随回归链覆盖。
 - **已知边界**：JSON 响应 gzip 后达标，但 raw 载荷仍大（`/state` 约 224KB）；800 块历史受 16MB 上限只保留约 17 批（磁盘优化候选）；板子格式 `structure-desk/1` 向前读取兼容。
 
 承 `17-结构账本` 的定性：**块是跑出来的，域是说出来的**；一份事实源、多种渲染；未覆盖是一等状态，不标红、不打分。

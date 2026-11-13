@@ -1,6 +1,6 @@
 {
   "name": "dsh-structure-desk",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "type": "module",
   "description": "结构台 · DeepSeek Harness 插件：域／块／连接一张桌，笔记、标注、分域、蓝图；人和智能体改同一份盘上的结构蓝图。",

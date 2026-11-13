@@ -177,13 +177,16 @@ test('工具 read 的 domain 带 criteria；read／gaps 的落差摘要带 byLay
   const tool = captureTool()
   const view = await tool.execute({ action: 'read', project }, {})
   assert.equal(view.domains.find((d) => d.title === '人域').criteria, '人写的判据')
+  assert.equal(view.domains.find((d) => d.title === '人域').layer, 'human')
+  assert.equal(view.blocks.find((b) => b.planned).layer, 'agent')
+  assert.deepEqual(view.layers.map((l) => [l.id, l.owner, l.count]), [['human', 'human', 1], ['agent', 'agent', 2], ['program', 'program', 1]])
   assert.deepEqual(view.gaps.byLayer, {
-    human: { ungrounded: 1, planOpen: 0 },
-    agent: { ungrounded: 1, planOpen: 1 },
-    program: { unannotated: 1 },
+    human: { owner: 'human', ungrounded: 1, planOpen: 0, unannotated: 0 },
+    agent: { owner: 'agent', ungrounded: 1, planOpen: 1, unannotated: 0 },
+    program: { owner: 'program', ungrounded: 0, planOpen: 0, unannotated: 1 },
   })
 
   const gapsView = await tool.execute({ action: 'gaps', project }, {})
-  assert.deepEqual(gapsView.gaps.byLayer.agent, { ungrounded: 1, planOpen: 1 })
-  assert.deepEqual(gapsView.gaps.byLayer.program, { unannotated: 1 })
+  assert.deepEqual(gapsView.gaps.byLayer.agent, { owner: 'agent', ungrounded: 1, planOpen: 1, unannotated: 0 })
+  assert.deepEqual(gapsView.gaps.byLayer.program, { owner: 'program', ungrounded: 0, planOpen: 0, unannotated: 1 })
 })

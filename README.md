@@ -7,9 +7,9 @@ A DeepSeek Harness plugin: **domains, blocks and links on one desk.** Take notes
 
 ## 状态（Alpha）
 
-- **版本**：0.1.0（对应结构台项目 v1.17 实现；v1.18 已验收，发版时升 0.2.0）；插件内部接口可能随版本调整，暂不承诺跨版本兼容。变更见 [CHANGELOG.md](CHANGELOG.md)。
+- **版本**：0.1.0（对应结构台项目 v1.17 实现；v1.18、v1.19 均已验收，待发版：v1.18 发版时升 0.2.0，v1.19 再升一档）；插件内部接口可能随版本调整，暂不承诺跨版本兼容。变更见 [CHANGELOG.md](CHANGELOG.md)。
 - **已验（宿主侧 / Node）**：`node --test` 58/58；宿主 HTTP 验收 42/42（300/800 块合成板：`/rev`、move-only 回包、`/state?parts`、`/history?since|batch`、读缓存、gzip wire 字节）；v1.16 回归 18/18；300 块 Node 热路径近似：物理 p50 3.3ms、DOM 写 1163 次/帧。v1.18 C 组：`physicsStep` SoA 后 800 块 physics p50 21.8→**5.0ms**、`autoLayout` 3.7→2.6s、`resolveOverlaps` 拥挤板 69→31ms（等价性脚本逐位校验）。
-- **已验（浏览器）**：stage **v28**（v1.18 渲染与物理）**19/0**、**v27**（v1.17 载荷与接口）**15/0**、**v26**（v1.16 计划与图层）**23/0**，回归链 v28→v27→…→v11 合计 **193 PASS / 0 FAIL**（2026-11-11，Edge 157.0.4341.42 headless + CDP attach）。三组对比（同一夹具/会话，headless）：78 档 warm 33→60fps、拖动 28.6→55.5fps（p95 20.1ms）、停止态 0 写/60fps；300 档 warm 4.7→40fps（frame p95 339.6→31.8ms、DOM 写 956→204/帧）、停止态 0 写/60fps（v1.17 为 300 写/6.7fps）。
+- **已验（浏览器）**：**v29**（v1.19 自定义说法层）**8/0**、**v28**（v1.18 渲染与物理）**19/0**、**v27**（v1.17 载荷与接口）**15/0**、**v26**（v1.16 计划与图层）**23/0**，回归链 v29→v28→…→v11 合计 **201 PASS / 0 FAIL**（2026-11-13 干净 Edge 157.0.4341.46 headless + CDP attach；v1.19 全链 201/0）。三组对比（同一夹具/会话，headless）：78 档 warm 33→60fps、拖动 28.6→55.5fps（p95 20.1ms）、停止态 0 写/60fps；300 档 warm 4.7→40fps（frame p95 339.6→31.8ms、DOM 写 956→204/帧）、停止态 0 写/60fps（v1.17 为 300 写/6.7fps）。
 - **未覆盖**：真实用户浏览器（非 headless 软件合成）的绝对帧率与跨浏览器兼容未测；300 档拖动 29.5fps（p95 86.1ms）仍偏低，留给下一版；明暗主题与快捷键已随回归链覆盖。
 - **已知边界**：JSON 响应 gzip 后达标，但 raw 载荷仍大（`/state` 约 224KB）；800 块历史受 16MB 上限只保留约 17 批（磁盘优化候选）；板子格式 `structure-desk/1` 向前读取兼容。
 

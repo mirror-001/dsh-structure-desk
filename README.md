@@ -3,7 +3,7 @@
 A DeepSeek Harness plugin: **domains, blocks and links on one desk.** Take notes, annotate code, divide a project into domains, sketch a blueprint and ground it later — the human in a canvas panel and the agent through the `structure_desk` tool edit **the same board on disk**.
 
 > 本仓库是**插件包本体**（宿主半边＋浏览器半边＋智能体工具）。结构台项目的工作区文档、示例项目、自扫描板、验收工具与截图不随本仓库发布。
-> 版本：`package.json` 0.1.0（对应结构台项目 v1.17 实现；v1.18 渲染与物理 B/C 组已实现并验收，待发版；**v1.19 自定义说法层（层板＋）已实现**：`board.layers[]` 独立层数据、作者≠层、按 `layer.owner` 守卫、`assign_layer` 换层、旧板补默认层兼容、D17 箭头端点收边；宿主单测 64/64、host-check-v119 32/0，浏览器 stage v29 **8/0**（真机：外部 Edge 157 headless + CDP attach），回归链仅 v28「78 节点拖动 fps」一项待干净环境复跑，待发版）；宿主侧单测 58/58、宿主 HTTP 验收 42/42 已验；浏览器 stage v28＋回归链 v28→v11 全绿（Edge 157 headless，2026-11-11）。
+> 版本：`package.json` 0.1.0（对应结构台项目 v1.17 实现；v1.18 渲染与物理 B/C 组已实现并验收，待发版；**v1.19 自定义说法层（层板＋）已实现**：`board.layers[]` 独立层数据、作者≠层、按 `layer.owner` 守卫、`assign_layer` 换层、旧板补默认层兼容、D17 箭头端点收边；宿主单测 64/64、host-check-v119 32/0，浏览器 stage v29 **8/0**（真机：外部 Edge 157 headless + CDP attach），**回归链 v29→v11 全绿合计 201/0**（2026-11-13 干净 Edge 复跑，v28 拖动 48.5fps），待发版）；宿主侧单测 58/58、宿主 HTTP 验收 42/42 已验；浏览器 stage v28＋回归链 v28→v11 全绿（Edge 157 headless，2026-11-11）。
 
 ## 状态（Alpha）
 
